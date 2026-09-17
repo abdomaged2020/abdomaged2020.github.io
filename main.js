@@ -49,7 +49,7 @@ async function renderHome(){
   const lang = getLang();
   let profile;
   try{
-    profile = await loadJSON("data/profile.json");
+    profile = await loadJSON("profile.json");
   }catch(e){
     console.error(e);
     return;
@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderChrome();
   const page = document.body.dataset.page;
   if(page === "home") renderHome();
-  if(page === "articles") renderArticlesPage("data/articles-planning.json", "articles-list", "article-detail");
-  if(page === "ai") renderArticlesPage("data/articles-ai.json", "articles-list", "article-detail");
+  if(page === "articles") renderArticlesPage("articles-planning.json", "articles-list", "article-detail");
+  if(page === "ai") renderArticlesPage("articles-ai.json", "articles-list", "article-detail");
   if(window.initChatbot) window.initChatbot();
 });
