@@ -65,8 +65,19 @@ async function renderHome(){
 
   const cvBtn = document.getElementById("cv-download");
   if(cvBtn){
-    if(profile.cvFile){ cvBtn.href = profile.cvFile; }
+    if(profile.cvFile){ cvBtn.href = profile.cvFile; cvBtn.style.display = ""; }
     else { cvBtn.style.display = "none"; }
+  }
+
+  const heroLinkedinBtn = document.getElementById("hero-linkedin");
+  if(heroLinkedinBtn){
+    const heroLinkedinUrl = profile.contact && profile.contact.linkedin;
+    if(heroLinkedinUrl && heroLinkedinUrl.startsWith("http")){
+      heroLinkedinBtn.href = heroLinkedinUrl;
+      heroLinkedinBtn.style.display = "";
+    }else{
+      heroLinkedinBtn.style.display = "none";
+    }
   }
 
   document.getElementById("summary-text").textContent = pick(profile.summary, lang);
@@ -149,7 +160,7 @@ async function renderHome(){
   const linkedinEl = document.getElementById("contact-linkedin");
   if(contact.linkedin){
     linkedinEl.href = contact.linkedin.startsWith("http") ? contact.linkedin : "#";
-    linkedinEl.textContent = contact.linkedin;
+    linkedinEl.textContent = t("contactLinkedinLabel");
   }
   const phoneCard = document.getElementById("contact-phone-card");
   if(contact.phone){
