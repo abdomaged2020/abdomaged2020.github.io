@@ -1,230 +1,165 @@
-/* Core rendering logic shared across pages. */
+/* Lightweight rule-based FAQ chatbot.
+   No external API, no server — matches visitor questions against
+   keyword lists and answers using data from profile.json + faq.json.
+   To add a new question/answer pair, edit faq.json — no code changes needed. */
 
-async function loadJSON(path){
-  const res = await fetch(path);
-  if(!res.ok) throw new Error("Failed to load " + path);
-  return res.json();
-}
+let __faqData = [];
 
-function pick(field, lang){
-  if(field == null) return "";
-  if(typeof field === "string") return field;
-  return field[lang] || field.ar || field.en || "";
-}
-
-/* ---------- Shared chrome: nav labels + lang toggle + footer ---------- */
-function renderChrome(){
+function buildWidget(){
   const lang = getLang();
-  applyLangToDocument(lang);
 
-  document.querySelectorAll("[data-i18n]").forEach(el=>{
-    el.textContent = t(el.getAttribute("data-i18n"));
-  });
-  document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{
-    el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
+  const toggle = document.createElement("button");
+  toggle.id = "chatbot-toggle";
+  toggle.setAttribute("aria-label", "chatbot");
+  toggle.textContent = "💬";
+  document.body.appendChild(toggle);
+
+  const panel = document.createElement("div");
+  panel.id = "chatbot-panel";
+  panel.innerHTML = `
+    <div class="chatbot-header">
+      <div>${t("chatTitle")}<small>${t("chatSubtitle")}</small></div>
+      <button class="chatbot-close" id="chatbot-close">✕</button>
+    </div>
+    <div class="chatbot-messages" id="chatbot-messages"></div>
+    <div class="chatbot-suggestions" id="chatbot-suggestions">
+      <div class="chip" data-q="chipExperience">${t("chipExperience")}</div>
+      <div class="chip" data-q="chipSkills">${t("chipSkills")}</div>
+      <div class="chip" data-q="chipCert">${t("chipCert")}</div>
+      <div class="chip" data-q="chipContact">${t("chipContact")}</div>
+    </div>
+    <div class="chatbot-input-row">
+      <input type="text" id="chatbot-input" placeholder="${t("chatPlaceholder")}" />
+      <button id="chatbot-send">${t("chatSend")}</button>
+    </div>
+  `;
+  document.body.appendChild(panel);
+
+  toggle.onclick = () => {
+    panel.classList.toggle("open");
+    if(panel.classList.contains("open") && !panel.dataset.greeted){
+      addMessage(t("chatWelcome"), "bot");
+      panel.dataset.greeted = "1";
+    }
+  };
+  document.getElementById("chatbot-close").onclick = () => panel.classList.remove("open");
+
+  document.getElementById("chatbot-send").onclick = handleSend;
+  document.getElementById("chatbot-input").addEventListener("keydown", (e)=>{
+    if(e.key === "Enter") handleSend();
   });
 
-  const langBtn = document.getElementById("lang-toggle");
-  if(langBtn){
-    langBtn.textContent = lang === "ar" ? "English" : "عربي";
-    langBtn.onclick = () => {
-      setLang(lang === "ar" ? "en" : "ar");
-      window.location.reload();
+  document.querySelectorAll("#chatbot-suggestions .chip").forEach(chip=>{
+    chip.onclick = () => {
+      const question = t(chip.dataset.q);
+      addMessage(question, "user");
+      respond(question);
     };
-  }
-
-  const activePage = document.body.dataset.page;
-  document.querySelectorAll(".nav-links a").forEach(a=>{
-    a.classList.toggle("active", a.dataset.page === activePage);
   });
-
-  const yearEl = document.getElementById("footer-year");
-  if(yearEl) yearEl.textContent = new Date().getFullYear();
-  const footerText = document.getElementById("footer-text");
-  if(footerText) footerText.textContent = t("footerText").replace("{year}", new Date().getFullYear());
 }
 
-/* ---------- Home page: profile rendering ---------- */
-async function renderHome(){
-  const lang = getLang();
-  let profile;
-  try{
-    profile = await loadJSON("profile.json");
-  }catch(e){
-    console.error(e);
-    return;
-  }
-
-  document.getElementById("hero-name").textContent = pick(profile.name, lang);
-  document.getElementById("hero-title").textContent = pick(profile.title, lang);
-  document.getElementById("hero-pitch").textContent = pick(profile.pitch, lang);
-  document.getElementById("hero-location").textContent = pick(profile.location, lang);
-
-  const photoEl = document.getElementById("hero-photo");
-  if(photoEl && profile.photo) photoEl.src = profile.photo;
-
-  const cvBtn = document.getElementById("cv-download");
-  if(cvBtn){
-    if(profile.cvFile){ cvBtn.href = profile.cvFile; }
-    else { cvBtn.style.display = "none"; }
-  }
-
-  document.getElementById("summary-text").textContent = pick(profile.summary, lang);
-
-  // Experience timeline
-  const timeline = document.getElementById("timeline");
-  timeline.innerHTML = "";
-  (profile.experience || []).forEach(job=>{
-    const points = (job.points && job.points[lang]) || [];
-    const item = document.createElement("div");
-    item.className = "timeline-item";
-    item.innerHTML = `
-      <div class="timeline-head">
-        <div>
-          <div class="timeline-role">${pick(job.role, lang)}</div>
-          <div class="timeline-company">${job.company}</div>
-        </div>
-        <div class="timeline-period">${pick(job.period, lang)}</div>
-      </div>
-      <div class="timeline-location">${pick(job.location, lang)}</div>
-      <ul class="timeline-points">${points.map(p=>`<li>${p}</li>`).join("")}</ul>
-    `;
-    timeline.appendChild(item);
-  });
-
-  // Skills
-  const skillsGrid = document.getElementById("skills-grid");
-  skillsGrid.innerHTML = "";
-  (profile.skills || []).forEach(skill=>{
-    const el = document.createElement("div");
-    el.className = "skill-item";
-    el.innerHTML = `
-      <div class="skill-name"><span>${pick(skill.name, lang)}</span><span>${skill.level}%</span></div>
-      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:${skill.level}%"></div></div>
-    `;
-    skillsGrid.appendChild(el);
-  });
-
-  // Certifications
-  const certList = document.getElementById("cert-list");
-  certList.innerHTML = "";
-  ((profile.certifications && profile.certifications[lang]) || []).forEach(c=>{
-    const li = document.createElement("div");
-    li.className = "cert-item";
-    li.textContent = c;
-    certList.appendChild(li);
-  });
-
-  // Education
-  const eduList = document.getElementById("education-list");
-  if(eduList){
-    eduList.innerHTML = "";
-    ((profile.education && profile.education[lang]) || []).forEach(ed=>{
-      const li = document.createElement("div");
-      li.className = "cert-item";
-      li.textContent = `${ed.degree} — ${ed.school} (${ed.period})`;
-      eduList.appendChild(li);
-    });
-  }
-
-  // Languages
-  const langList = document.getElementById("languages-list");
-  if(langList){
-    langList.innerHTML = "";
-    ((profile.languages && profile.languages[lang]) || []).forEach(lg=>{
-      const li = document.createElement("div");
-      li.className = "cert-item";
-      li.textContent = lg;
-      langList.appendChild(li);
-    });
-  }
-
-  // Contact
-  const contact = profile.contact || {};
-  const emailEl = document.getElementById("contact-email");
-  if(contact.email){
-    emailEl.href = "mailto:" + contact.email;
-    emailEl.textContent = contact.email;
-  }
-  const linkedinEl = document.getElementById("contact-linkedin");
-  if(contact.linkedin){
-    linkedinEl.href = contact.linkedin.startsWith("http") ? contact.linkedin : "#";
-    linkedinEl.textContent = contact.linkedin;
-  }
-  const phoneCard = document.getElementById("contact-phone-card");
-  if(contact.phone){
-    document.getElementById("contact-phone").textContent = contact.phone;
-    document.getElementById("contact-phone").href = "tel:" + contact.phone;
-  }else if(phoneCard){
-    phoneCard.style.display = "none";
-  }
-
-  window.__profileData = profile; // expose for chatbot
+function addMessage(text, who){
+  const box = document.getElementById("chatbot-messages");
+  const div = document.createElement("div");
+  div.className = "msg " + (who === "user" ? "msg-user" : "msg-bot");
+  div.textContent = text;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
 }
 
-/* ---------- Articles pages (planning / ai) ---------- */
-async function renderArticlesPage(jsonPath, listId, detailId){
+function handleSend(){
+  const input = document.getElementById("chatbot-input");
+  const value = input.value.trim();
+  if(!value) return;
+  addMessage(value, "user");
+  input.value = "";
+  respond(value);
+}
+
+function matchesAny(text, keywords){
+  const lower = text.toLowerCase();
+  return keywords.some(k => lower.includes(k.toLowerCase()));
+}
+
+function respond(question){
   const lang = getLang();
-  let articles = [];
+  const profile = window.__profileData || {};
+  const lower = question;
+
+  // Built-in intents based on profile data
+  const intents = [
+    {
+      keywords: ["خبرة", "خبرتك", "تشتغل فين", "شغال فين", "current job", "experience", "employer", "شركة ايه"],
+      answer: () => {
+        const job = (profile.experience || [])[0];
+        if(!job) return null;
+        return lang === "ar"
+          ? `أعمل حاليًا كـ ${pick(job.role, lang)} في ${job.company} (${pick(job.period, lang)}).`
+          : `I currently work as ${pick(job.role, lang)} at ${job.company} (${pick(job.period, lang)}).`;
+      }
+    },
+    {
+      keywords: ["مهارات", "مهاراتك", "skills", "تتقن ايه", "خبير في"],
+      answer: () => {
+        const skills = (profile.skills || []).map(s => pick(s.name, lang));
+        if(!skills.length) return null;
+        return lang === "ar" ? "أهم مهاراتي: " + skills.join("، ") : "My top skills: " + skills.join(", ");
+      }
+    },
+    {
+      keywords: ["شهادات", "شهادة", "عضوية", "certifications", "membership", "sce"],
+      answer: () => {
+        const certs = (profile.certifications && profile.certifications[lang]) || [];
+        if(!certs.length) return null;
+        return certs.join(" | ");
+      }
+    },
+    {
+      keywords: ["تواصل", "ايميل", "إيميل", "بريد", "لينكدإن", "linkedin", "email", "contact"],
+      answer: () => {
+        const c = profile.contact || {};
+        const parts = [];
+        if(c.email) parts.push((lang === "ar" ? "البريد الإلكتروني: " : "Email: ") + c.email);
+        if(c.linkedin && c.linkedin.startsWith("http")) parts.push("LinkedIn: " + c.linkedin);
+        return parts.length ? parts.join(" — ") : null;
+      }
+    },
+    {
+      keywords: ["فين مقيم", "location", "مكان الاقامة", "based", "تعيش فين"],
+      answer: () => pick(profile.location, lang) || null
+    }
+  ];
+
+  for(const intent of intents){
+    if(matchesAny(lower, intent.keywords)){
+      const ans = intent.answer();
+      if(ans){ addMessage(ans, "bot"); return; }
+    }
+  }
+
+  // Custom FAQ entries from faq.json
+  for(const item of __faqData){
+    if(matchesAny(lower, item.keywords || [])){
+      addMessage(pick(item.answer, lang), "bot");
+      return;
+    }
+  }
+
+  addMessage(t("chatFallback"), "bot");
+}
+
+window.initChatbot = async function(){
   try{
-    articles = await loadJSON(jsonPath);
+    __faqData = await loadJSON("faq.json");
   }catch(e){
     console.error(e);
   }
-
-  const listEl = document.getElementById(listId);
-  const detailEl = document.getElementById(detailId);
-
-  function showList(){
-    detailEl.style.display = "none";
-    listEl.style.display = "grid";
+  if(!window.__profileData){
+    try{
+      window.__profileData = await loadJSON("profile.json");
+    }catch(e){
+      console.error(e);
+    }
   }
-
-  function showDetail(article){
-    listEl.style.display = "none";
-    detailEl.style.display = "block";
-    const dateStr = new Date(article.date).toLocaleDateString(lang === "ar" ? "ar-EG" : "en-US", {year:"numeric", month:"long", day:"numeric"});
-    detailEl.innerHTML = `
-      <div class="back-link" id="back-to-list">&larr; ${t("backToList")}</div>
-      <div class="article-full">
-        <div class="article-date">${dateStr}</div>
-        <h1 class="article-title">${pick(article.title, lang)}</h1>
-        <div class="article-body">${pick(article.content, lang)}</div>
-      </div>
-    `;
-    document.getElementById("back-to-list").onclick = showList;
-    window.scrollTo({top:0, behavior:"smooth"});
-  }
-
-  if(!articles.length){
-    listEl.innerHTML = `<div class="empty-state">${t("emptyArticles")}</div>`;
-    return;
-  }
-
-  listEl.innerHTML = "";
-  articles
-    .slice()
-    .sort((a,b)=> new Date(b.date) - new Date(a.date))
-    .forEach(article=>{
-      const dateStr = new Date(article.date).toLocaleDateString(lang === "ar" ? "ar-EG" : "en-US", {year:"numeric", month:"long", day:"numeric"});
-      const card = document.createElement("div");
-      card.className = "article-card";
-      card.innerHTML = `
-        <div class="article-date">${dateStr}</div>
-        <div class="article-title">${pick(article.title, lang)}</div>
-        <div class="article-summary">${pick(article.summary, lang)}</div>
-        <div class="article-read">${t("readMore")} &larr;</div>
-      `;
-      card.onclick = () => showDetail(article);
-      listEl.appendChild(card);
-    });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  renderChrome();
-  const page = document.body.dataset.page;
-  if(page === "home") renderHome();
-  if(page === "articles") renderArticlesPage("articles-planning.json", "articles-list", "article-detail");
-  if(page === "ai") renderArticlesPage("articles-ai.json", "articles-list", "article-detail");
-  if(window.initChatbot) window.initChatbot();
-});
+  buildWidget();
+};
