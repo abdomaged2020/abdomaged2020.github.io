@@ -6,11 +6,11 @@
     "en": "Senior Planning Engineer with 12+ years of experience in planning, scheduling, and project controls across construction and infrastructure projects in Saudi Arabia, including engagements with NWC, SWCC, and municipal authorities (Amanah)."
   },
   "summary": {
-    "ar": "متخصص في Primavera P6 وإعداد خطوط الأساس (Baseline) والجداول التفصيلية، وتحليل المسار الحرج، وتقييم مخاطر الجدول، وجداول التعافي (Recovery Schedules). لدي قدرة قوية في إدارة القيمة المكتسبة (EVM) وتحليل SPI/CPI، بالإضافة إلى خبرة في تحليل التأخيرات ودعم طلبات تمديد المدة (EOT) والمطالبات من خلال Time Impact Analysis، مع الحفاظ على أداء الجدول عبر مشاريع بنية تحتية متزامنة.",
+    "ar": "متخصص في Primavera P6 وإعداد خطوط الأساس (Baseline) والجداول التفصيلية، وتحليل المسار الحرج, وتقييم مخاطر الجدول، وجداول التعافي (Recovery Schedules). لدي قدرة قوية في إدارة القيمة المكتسبة (EVM) وتحليل SPI/CPI، بالإضافة إلى خبرة في تحليل التأخيرات ودعم طلبات تمديد المدة (EOT) والمطالبات من خلال Time Impact Analysis، مع الحفاظ على أداء الجدول عبر مشاريع بنية تحتية متزامنة.",
     "en": "Skilled in Primavera P6, baseline and detailed schedule development, critical path analysis, schedule risk assessment, and recovery scheduling. Strong capability in Earned Value Management (EVM) including SPI/CPI analysis, with hands-on experience in delay analysis and supporting Extension of Time (EOT) and claims activities through Time Impact Analysis, while maintaining schedule performance across concurrent infrastructure projects."
   },
-  "location": { "ar": "المدينة المنورة، المملكة العربية السعودية", "en": "Madinah, Saudi Arabia" },
-  "photo": "assets/avatar-placeholder.svg",
+  "location": { "ar": "المدينة المنورة, المملكة العربية السعودية", "en": "Madinah, Saudi Arabia" },
+  "photo": "profile-photo.jpg",
   "cvFile": "",
 
   "experience": [
@@ -22,7 +22,7 @@
       "points": {
         "ar": [
           "إعداد وصيانة خطوط الأساس (Baseline) والجداول الزمنية التفصيلية باستخدام Primavera P6 بما يتوافق مع متطلبات المشروع واستراتيجيات التنفيذ",
-          "تنفيذ تحديثات أسبوعية وشهرية للجدول، وقياس التقدم، ومتابعة الأداء مقابل خط الأساس المعتمد",
+          "تنفيذ تحديثات أسبوعية وشهرية للجدول, قياس التقدم, ومتابعة الأداء مقابل خط الأساس المعتمد",
           "تحليل المسار الحرج وأداء الجدول والتأخيرات ومخاطر الجدول، وتحديد تأثيرها المحتمل على المعالم الرئيسية وتاريخ الإنجاز",
           "إعداد جداول التعافي (Recovery Schedules) وخطط الإجراءات التصحيحية لمعالجة التأخيرات",
           "إعداد تقارير التقدم وتحليلات الجدول ومنحنيات S-Curve للإدارة والعملاء وأصحاب المصلحة",
@@ -88,7 +88,7 @@
 
   "education": {
     "ar": [
-      { "degree": "بكالوريوس هندسة مدنية", "school": "معهد الصفوة العالي للهندسة", "period": "2009 - 2014" }
+      { "degree": "بكالوريوس هندسة مدنية", "school": "معهد الصفوة العالي للهندҳة", "period": "2009 - 2014" }
     ],
     "en": [
       { "degree": "Bachelor of Civil Engineering", "school": "Al Safwa High Institute of Engineering", "period": "2009 - 2014" }
