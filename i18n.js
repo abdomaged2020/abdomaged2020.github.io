@@ -1,5 +1,5 @@
 /* Static UI strings (navigation, section titles, buttons).
-   Content data (profile, articles) lives in /data/*.json instead. */
+   Content data (profile, articles) lives in the *.json files instead. */
 const UI = {
   ar: {
     navHome: "الرئيسية",
