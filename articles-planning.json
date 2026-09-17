@@ -1,0 +1,15 @@
+[
+  {
+    "id": "planning-article-1",
+    "title": { "ar": "[TODO: عنوان المقال الأول عن التخطيط والجدولة]", "en": "[TODO: Title of your first Planning/Scheduling article]" },
+    "date": "2026-09-17",
+    "summary": {
+      "ar": "[TODO: ملخص من سطرين عن المقال]",
+      "en": "[TODO: A two-line summary of the article]"
+    },
+    "content": {
+      "ar": "<p>[TODO: اكتب محتوى المقال كامل هنا. تقدر تستخدم وسوم HTML بسيطة زي &lt;p&gt; و &lt;h3&gt; و &lt;ul&gt;&lt;li&gt; للتنسيق.]</p>",
+      "en": "<p>[TODO: Write the full article content here. You can use simple HTML tags like &lt;p&gt;, &lt;h3&gt;, and &lt;ul&gt;&lt;li&gt; for formatting.]</p>"
+    }
+  }
+]

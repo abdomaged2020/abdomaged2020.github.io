@@ -1,0 +1,34 @@
+[
+  {
+    "id": "freelance",
+    "keywords": ["فريلانس", "freelance", "مستقل", "تعمل مستقل", "متاح للعمل", "available for work", "hire"],
+    "answer": {
+      "ar": "أيوه، متاح بالكامل لأعمال الفريلانس والاستشارات في التخطيط والجدولة (إعداد جداول Primavera P6، تحليل تأخيرات، مراجعة جداول، إعداد مطالبات). تقدر تتواصل معايا عبر البريد الإلكتروني أو LinkedIn في قسم التواصل.",
+      "en": "Yes, I'm fully available for freelance and consulting work in planning and scheduling (Primavera P6 schedule development, delay analysis, schedule review, claims preparation). Reach out via email or LinkedIn in the Contact section."
+    }
+  },
+  {
+    "id": "software",
+    "keywords": ["برامج", "software", "تستخدم", "بريمافيرا", "primavera", "ms project", "برنامج ايه"],
+    "answer": {
+      "ar": "بستخدم Primavera P6 كأداة أساسية في إعداد وتحديث الجداول الزمنية، بالإضافة إلى MS Project حسب متطلبات المشروع.",
+      "en": "I primarily use Primavera P6 for schedule development and updates, along with MS Project depending on project requirements."
+    }
+  },
+  {
+    "id": "delay-analysis",
+    "keywords": ["تأخير", "delay", "مطالبات", "claims", "تحليل التأخيرات"],
+    "answer": {
+      "ar": "لدي خبرة في تحليل التأخيرات باستخدام منهجيات معتمدة مثل Time Impact Analysis (TIA) وWindows Analysis ومقارنة As-Built مقابل As-Planned، بالإضافة إلى إعداد تقارير وتوثيق المطالبات.",
+      "en": "I have experience in Delay Analysis using recognized methodologies such as Time Impact Analysis (TIA), Windows Analysis, and As-Built vs As-Planned comparison, along with claims documentation and reporting."
+    }
+  },
+  {
+    "id": "projects-type",
+    "keywords": ["مشاريع", "projects", "نوع المشاريع", "بتشتغل على ايه"],
+    "answer": {
+      "ar": "بشتغل على مشاريع شبكات المياه والبنية التحتية، أغلبها لصالح شركة المياه الوطنية (NWC) والمؤسسة العامة لتحلية المياه المالحة (SWCC) والأمانات، بقيم تعاقدية تتراوح بين 30 و200+ مليون ريال.",
+      "en": "I work on water network and infrastructure projects, mostly for the National Water Company (NWC), the Saline Water Conversion Corporation (SWCC), and municipal authorities, with contract values ranging from SAR 30M to 200M+."
+    }
+  }
+]

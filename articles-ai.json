@@ -1,0 +1,15 @@
+[
+  {
+    "id": "ai-article-1",
+    "title": { "ar": "[TODO: عنوان أول مقال عن الذكاء الاصطناعي وهندسة التخطيط]", "en": "[TODO: Title of your first AI & Planning article]" },
+    "date": "2026-09-17",
+    "summary": {
+      "ar": "[TODO: ملخص من سطرين عن المقال]",
+      "en": "[TODO: A two-line summary of the article]"
+    },
+    "content": {
+      "ar": "<p>[TODO: اكتب محتوى المقال كامل هنا.]</p>",
+      "en": "<p>[TODO: Write the full article content here.]</p>"
+    }
+  }
+]

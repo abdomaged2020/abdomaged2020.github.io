@@ -1,0 +1,131 @@
+{
+  "name": { "ar": "عبدالرحمن ماجد", "en": "Abdulrahman Maged" },
+  "title": { "ar": "مهندس تخطيط أول | Senior Planning Engineer", "en": "Senior Planning Engineer" },
+  "pitch": {
+    "ar": "مهندس تخطيط بخبرة تتجاوز 12 عامًا في التخطيط والجدولة ورقابة المشاريع بمشاريع المقاولات والبنية التحتية في السعودية، بالعمل مع شركة المياه الوطنية (NWC)، المؤسسة العامة لتحلية المياه المالحة (SWCC)، والأمانات.",
+    "en": "Senior Planning Engineer with 12+ years of experience in planning, scheduling, and project controls across construction and infrastructure projects in Saudi Arabia, including engagements with NWC, SWCC, and municipal authorities (Amanah)."
+  },
+  "summary": {
+    "ar": "متخصص في Primavera P6 وإعداد خطوط الأساس (Baseline) والجداول التفصيلية، وتحليل المسار الحرج، وتقييم مخاطر الجدول، وجداول التعافي (Recovery Schedules). لدي قدرة قوية في إدارة القيمة المكتسبة (EVM) وتحليل SPI/CPI، بالإضافة إلى خبرة في تحليل التأخيرات ودعم طلبات تمديد المدة (EOT) والمطالبات من خلال Time Impact Analysis، مع الحفاظ على أداء الجدول عبر مشاريع بنية تحتية متزامنة.",
+    "en": "Skilled in Primavera P6, baseline and detailed schedule development, critical path analysis, schedule risk assessment, and recovery scheduling. Strong capability in Earned Value Management (EVM) including SPI/CPI analysis, with hands-on experience in delay analysis and supporting Extension of Time (EOT) and claims activities through Time Impact Analysis, while maintaining schedule performance across concurrent infrastructure projects."
+  },
+  "location": { "ar": "المدينة المنورة، المملكة العربية السعودية", "en": "Madinah, Saudi Arabia" },
+  "photo": "assets/avatar-placeholder.svg",
+  "cvFile": "",
+
+  "experience": [
+    {
+      "company": "Cayan Almamlika Co.",
+      "role": { "ar": "مهندس تخطيط", "en": "Planning Engineer" },
+      "period": { "ar": "مايو 2023 - حتى الآن", "en": "May 2023 - Present" },
+      "location": { "ar": "المملكة العربية السعودية", "en": "Saudi Arabia" },
+      "points": {
+        "ar": [
+          "إعداد وصيانة خطوط الأساس (Baseline) والجداول الزمنية التفصيلية باستخدام Primavera P6 بما يتوافق مع متطلبات المشروع واستراتيجيات التنفيذ",
+          "تنفيذ تحديثات أسبوعية وشهرية للجدول، وقياس التقدم، ومتابعة الأداء مقابل خط الأساس المعتمد",
+          "تحليل المسار الحرج وأداء الجدول والتأخيرات ومخاطر الجدول، وتحديد تأثيرها المحتمل على المعالم الرئيسية وتاريخ الإنجاز",
+          "إعداد جداول التعافي (Recovery Schedules) وخطط الإجراءات التصحيحية لمعالجة التأخيرات",
+          "إعداد تقارير التقدم وتحليلات الجدول ومنحنيات S-Curve للإدارة والعملاء وأصحاب المصلحة",
+          "تطبيق تقنيات إدارة القيمة المكتسبة (EVM) بما فيها تحليل SPI وCPI",
+          "دعم أنشطة تحليل التأخيرات وطلبات تمديد المدة (EOT) والمطالبات عبر Time Impact Analysis",
+          "أبرز المشاريع الحالية: مشروعان لشبكات مياه NWC (34+ و31+ مليون ريال)، مشروع تحلية لـ SWCC (200+ مليون ريال)، ومشروع بنية تحتية بلدية لإحدى الأمانات (60+ مليون ريال)"
+        ],
+        "en": [
+          "Develop and maintain baseline and detailed project schedules using Primavera P6 in line with project requirements and execution strategies",
+          "Perform weekly and monthly schedule updates, progress measurement, and performance monitoring against the approved baseline",
+          "Analyze critical path, schedule performance, delays, and schedule risks, identifying potential impacts on key milestones and completion dates",
+          "Develop and monitor recovery schedules and corrective action plans to mitigate delays",
+          "Prepare progress reports, schedule analysis, and S-curves for management, clients, and stakeholders",
+          "Apply EVM techniques, including SPI and CPI analysis, to monitor project performance",
+          "Support delay analysis, Extension of Time (EOT), and claims activities through Time Impact Analysis",
+          "Selected current portfolio: 2 concurrent NWC water infrastructure projects (SAR 34M+ / 31M+), 1 SWCC desalination project (SAR 200M+), 1 Amanah municipal infrastructure project (SAR 60M+)"
+        ]
+      }
+    },
+    {
+      "company": "Motlaq Al-Ghweiry",
+      "role": { "ar": "مهندس تخطيط", "en": "Planning Engineer" },
+      "period": { "ar": "2018 - 2021", "en": "2018 - 2021" },
+      "location": { "ar": "الطائف، المملكة العربية السعودية", "en": "Al-Taif, Saudi Arabia" },
+      "points": {
+        "ar": [
+          "إدارة أنشطة التخطيط والجدولة عبر 11 مشروعًا لشبكات مياه NWC، شملت شبكات المياه وخطوط الأنابيب",
+          "إعداد وصيانة الجداول الزمنية باستخدام Primavera P6، شاملةً تحديثات الجدول ومتابعة التقدم والمعالم",
+          "إعداد وتنفيذ استراتيجيات تعافي الجدول لمعالجة التأخيرات والحفاظ على مواعيد الإنجاز",
+          "تحليل المسار الحرج والجدول لتحديد الأنشطة المؤثرة على المعالم الرئيسية وتاريخ الإنجاز الكلي",
+          "متابعة تقدم المشروع مقابل الجداول المعتمدة وتحديد مخاطر الجدول وقيود الموارد"
+        ],
+        "en": [
+          "Managed planning and scheduling activities across 11 NWC water infrastructure projects, covering water networks and pipelines",
+          "Developed and maintained project schedules using Primavera P6, including schedule updates, progress monitoring, and milestone tracking",
+          "Prepared and implemented schedule recovery strategies to address delays and maintain completion targets",
+          "Performed critical path and schedule analysis, identifying activities affecting key milestones and overall completion",
+          "Monitored project progress against approved schedules and identified schedule risks and resource constraints"
+        ]
+      }
+    },
+    {
+      "company": "Al-Khodary",
+      "role": { "ar": "مهندس تخطيط", "en": "Planning Engineer" },
+      "period": { "ar": "2015 - 2018", "en": "2015 - 2018" },
+      "location": { "ar": "الرياض، المملكة العربية السعودية", "en": "Riyadh, Saudi Arabia" },
+      "points": {
+        "ar": [
+          "إدارة أنشطة التخطيط والجدولة عبر 3 مشاريع بنية تحتية بلدية لصالح إحدى الأمانات، شملت أعمال تصريف مياه الأمطار والعبّارات الصندوقية",
+          "إعداد وصيانة الجداول الزمنية باستخدام MS Project، شاملةً التحديثات ومتابعة التقدم والمعالم",
+          "إعداد وتنفيذ استراتيجيات تعافي الجدول لمعالجة التأخيرات",
+          "تحليل الجدول ومتابعة التقدم لتحديد الأنشطة المؤثرة على المعالم وتاريخ الإنجاز"
+        ],
+        "en": [
+          "Managed planning and scheduling activities across 3 municipal infrastructure projects for a municipality (Amanah), covering stormwater and box culvert construction works",
+          "Developed and maintained project schedules using MS Project, including schedule updates, progress monitoring, and milestone tracking",
+          "Prepared and implemented schedule recovery strategies to address delays",
+          "Performed schedule analysis and progress monitoring, identifying activities affecting key milestones and completion dates"
+        ]
+      }
+    }
+  ],
+
+  "education": {
+    "ar": [
+      { "degree": "بكالوريوس هندسة مدنية", "school": "معهد الصفوة العالي للهندسة", "period": "2009 - 2014" }
+    ],
+    "en": [
+      { "degree": "Bachelor of Civil Engineering", "school": "Al Safwa High Institute of Engineering", "period": "2009 - 2014" }
+    ]
+  },
+
+  "skills": [
+    { "name": { "ar": "Primavera P6", "en": "Primavera P6" }, "level": 95 },
+    { "name": { "ar": "تحليل المسار الحرج (CPM)", "en": "Critical Path Method (CPM)" }, "level": 92 },
+    { "name": { "ar": "تحليل التأخيرات (TIA) ودعم المطالبات وطلبات EOT", "en": "Delay Analysis (TIA), Claims & EOT Support" }, "level": 90 },
+    { "name": { "ar": "إدارة القيمة المكتسبة (EVM) وS-Curve", "en": "EVM (SPI/CPI) & S-Curve" }, "level": 88 },
+    { "name": { "ar": "إعداد خطوط الأساس وجداول التعافي", "en": "Baseline & Schedule Recovery" }, "level": 90 },
+    { "name": { "ar": "MS Project", "en": "MS Project" }, "level": 80 },
+    { "name": { "ar": "أدوات الذكاء الاصطناعي في التخطيط وإدارة المشاريع", "en": "AI Tools for Planning & Project Management" }, "level": 78 }
+  ],
+
+  "certifications": {
+    "ar": [
+      "عضوية الهيئة السعودية للمهندسين (SCE) - رقم العضوية 251137، سارية حتى يوليو 2027",
+      "دبلومة Advanced Project Management and Primavera P6 - أكاديمية Study Online (120 ساعة، يوليو-سبتمبر 2024)",
+      "دبلومة احترافية في الذكاء الاصطناعي للأعمال والمشاريع - ES-WSAI (40+ ساعة، 2026)"
+    ],
+    "en": [
+      "Saudi Council of Engineers (SCE) Membership - No. 251137, valid until July 2027",
+      "Advanced Project Management and Primavera P6 - Study Online Academy (120 hours, Jul-Sep 2024)",
+      "Professional Diploma in AI in Business and Projects - ES-WSAI (40+ hours, 2026)"
+    ]
+  },
+
+  "languages": {
+    "ar": ["العربية (لغة أم)", "الإنجليزية (متوسط)"],
+    "en": ["Arabic (Native)", "English (Intermediate)"]
+  },
+
+  "contact": {
+    "email": "eng.abdelrhmanmaged2022@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/abdalrahmn-maged-94742b1a7/",
+    "phone": "+966597377446"
+  }
+}

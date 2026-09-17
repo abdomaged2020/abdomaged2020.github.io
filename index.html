@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عبدالرحمن ماجد | Planning Engineer</title>
+<meta name="description" content="عبدالرحمن ماجد - مهندس تخطيط أول بخبرة 12+ عامًا في مشاريع المقاولات والبنية التحتية، متخصص في Primavera P6 وتحليل المسار الحرج وتحليل التأخيرات.">
+<meta property="og:title" content="عبدالرحمن ماجد | Senior Planning Engineer">
+<meta property="og:description" content="مهندس تخطيط أول بخبرة 12+ عامًا في مشاريع المقاولات والبنية التحتية.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/avatar-placeholder.svg">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script>
+  (function(){
+    var lang = localStorage.getItem("site-lang") || "ar";
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  })();
+</script>
+</head>
+<body data-page="home">
+
+<header class="site-header">
+  <div class="container nav-row">
+    <div class="brand">
+      <img src="assets/favicon.svg" alt="logo">
+      <span id="brand-name">Abdulrahman Maged</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" data-page="home" data-i18n="navHome">Home</a>
+      <a href="articles.html" data-page="articles" data-i18n="navArticles">Articles</a>
+      <a href="ai-planning.html" data-page="ai" data-i18n="navAI">AI in Planning</a>
+      <button class="lang-toggle" id="lang-toggle">English</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <img id="hero-photo" class="hero-photo" src="assets/avatar-placeholder.svg" alt="profile photo">
+    <div class="hero-text">
+      <h1 id="hero-name"></h1>
+      <div class="hero-title" id="hero-title"></div>
+      <p class="hero-pitch" id="hero-pitch"></p>
+      <div class="hero-meta">
+        <span id="hero-location"></span>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-gold" id="cv-download" href="#" download data-i18n="heroDownloadCV">Download CV</a>
+        <a class="btn btn-outline" href="#contact" data-i18n="heroContact">Contact Me</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="section-title" data-i18n="summaryTitle">About Me</h2>
+    <div class="summary-box" id="summary-text"></div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <h2 class="section-title" data-i18n="experienceTitle">Experience</h2>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="section-title" data-i18n="skillsTitle">Technical Skills</h2>
+    <div class="skills-grid" id="skills-grid"></div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <h2 class="section-title" data-i18n="certTitle">Certifications</h2>
+    <div class="cert-list" id="cert-list"></div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="section-title" data-i18n="educationTitle">Education</h2>
+    <div class="cert-list" id="education-list"></div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <h2 class="section-title" data-i18n="languagesTitle">Languages</h2>
+    <div class="cert-list" id="languages-list"></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title" data-i18n="contactTitle">Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="label" data-i18n="contactEmail">Email</div>
+        <a class="value" id="contact-email" href="#"></a>
+      </div>
+      <div class="contact-card">
+        <div class="label" data-i18n="contactLinkedin">LinkedIn</div>
+        <a class="value" id="contact-linkedin" href="#" target="_blank" rel="noopener"></a>
+      </div>
+      <div class="contact-card" id="contact-phone-card">
+        <div class="label" data-i18n="contactPhone">Phone</div>
+        <a class="value" id="contact-phone" href="#"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container" id="footer-text"></div>
+</footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+<script src="js/chatbot.js"></script>
+</body>
+</html>
