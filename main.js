@@ -56,9 +56,14 @@ async function renderHome(){
   }
 
   document.getElementById("hero-name").textContent = pick(profile.name, lang);
-  document.getElementById("hero-title").textContent = pick(profile.title, lang);
+  const heroBadge = document.getElementById("hero-title-badge");
+  if(heroBadge) heroBadge.textContent = pick(profile.title, lang);
   document.getElementById("hero-pitch").textContent = pick(profile.pitch, lang);
   document.getElementById("hero-location").textContent = pick(profile.location, lang);
+
+  const certsCount = (profile.certifications && profile.certifications[lang] && profile.certifications[lang].length) || 0;
+  const heroStatCerts = document.getElementById("hero-stat-certs");
+  if(heroStatCerts) heroStatCerts.textContent = certsCount;
 
   const photoEl = document.getElementById("hero-photo");
   if(photoEl && profile.photo) photoEl.src = profile.photo;
@@ -82,23 +87,24 @@ async function renderHome(){
 
   document.getElementById("summary-text").textContent = pick(profile.summary, lang);
 
-  // Experience timeline
+  // Experience timeline — cinematic full-bleed sections, one image per role
+  const expImages = ["images/exp-swcc.jpg", "images/exp-nwc.jpg", "images/exp-amanah.jpg"];
   const timeline = document.getElementById("timeline");
   timeline.innerHTML = "";
-  (profile.experience || []).forEach(job=>{
+  (profile.experience || []).forEach((job, idx)=>{
     const points = (job.points && job.points[lang]) || [];
+    const bg = expImages[idx % expImages.length];
     const item = document.createElement("div");
-    item.className = "timeline-item";
+    item.className = "timeline-item reveal" + (idx % 2 === 1 ? " timeline-item-alt" : "");
+    item.style.backgroundImage = `url('${bg}')`;
     item.innerHTML = `
-      <div class="timeline-head">
-        <div>
-          <div class="timeline-role">${pick(job.role, lang)}</div>
-          <div class="timeline-company">${job.company}</div>
-        </div>
+      <div class="cine-overlay"></div>
+      <div class="timeline-content">
         <div class="timeline-period">${pick(job.period, lang)}</div>
+        <div class="timeline-role">${pick(job.role, lang)}</div>
+        <div class="timeline-company">${job.company} &middot; ${pick(job.location, lang)}</div>
+        <ul class="timeline-points">${points.map(p=>`<li>${p}</li>`).join("")}</ul>
       </div>
-      <div class="timeline-location">${pick(job.location, lang)}</div>
-      <ul class="timeline-points">${points.map(p=>`<li>${p}</li>`).join("")}</ul>
     `;
     timeline.appendChild(item);
   });
@@ -170,7 +176,62 @@ async function renderHome(){
     phoneCard.style.display = "none";
   }
 
+  // Footer contact links (mirrors the Contact section)
+  const footerEmail = document.getElementById("footer-email");
+  if(footerEmail && contact.email){
+    footerEmail.href = "mailto:" + contact.email;
+    footerEmail.textContent = contact.email;
+  }
+  const footerLinkedin = document.getElementById("footer-linkedin");
+  if(footerLinkedin && contact.linkedin){
+    footerLinkedin.href = contact.linkedin.startsWith("http") ? contact.linkedin : "#";
+  }
+  const footerPhone = document.getElementById("footer-phone");
+  if(footerPhone){
+    if(contact.phone){
+      footerPhone.href = "tel:" + contact.phone;
+      footerPhone.textContent = contact.phone;
+    }else{
+      footerPhone.style.display = "none";
+    }
+  }
+
   window.__profileData = profile; // expose for chatbot
+  initRevealAnimations();
+}
+
+/* ---------- Cinematic UX: sticky nav translucency + scroll reveal ---------- */
+function initHeaderScroll(){
+  const header = document.querySelector(".site-header");
+  if(!header) return;
+  const hasHero = !!document.querySelector(".cine-hero");
+  function update(){
+    if(!hasHero || window.scrollY > 60){
+      header.classList.add("scrolled");
+    }else{
+      header.classList.remove("scrolled");
+    }
+  }
+  update();
+  window.addEventListener("scroll", update, {passive:true});
+}
+
+function initRevealAnimations(){
+  const items = document.querySelectorAll(".reveal");
+  if(!items.length) return;
+  if(!("IntersectionObserver" in window)){
+    items.forEach(el=>el.classList.add("revealed"));
+    return;
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("revealed");
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  items.forEach(el=>io.observe(el));
 }
 
 /* ---------- Articles pages (planning / ai) ---------- */
@@ -233,6 +294,7 @@ async function renderArticlesPage(jsonPath, listId, detailId){
 
 document.addEventListener("DOMContentLoaded", () => {
   renderChrome();
+  initHeaderScroll();
   const page = document.body.dataset.page;
   if(page === "home") renderHome();
   if(page === "articles") renderArticlesPage("articles-planning.json", "articles-list", "article-detail");
