@@ -23,7 +23,7 @@ const UI = {
     skillsCat1: "أدوات الجدولة",
     skillsCat1Desc: "Primavera P6 وMS Project لإعداد وصيانة الجداول الزمنية التفصيلية",
     skillsCat2: "تحليل الجدول والمسار الحرج",
-    skillsCat2Desc: "خطوط الأساسو تحليل CPM، وجداول التعافي (Recovery Schedules)",
+    skillsCat2Desc: "خطوط الأساس، تحليل CPM، وجداول التعافي (Recovery Schedules)",
     skillsCat3: "تحليل التأخيرات والمطالبات",
     skillsCat3Desc: "Time Impact Analysis ودعم طلبات تمديد المدة (EOT) والمطالبات",
     skillsCat4: "القيمة المكتسبة والذكاء الاصطناعي",
@@ -144,7 +144,7 @@ const UI = {
 };
 
 function getLang(){
-  return localStorage.getItem("site-lang") || "ar";
+  return localStorage.getItem("site-lang") || "en";
 }
 function setLang(lang){
   localStorage.setItem("site-lang", lang);
