@@ -200,6 +200,35 @@ async function renderHome(){
   initRevealAnimations();
 }
 
+/* ---------- Mobile nav (hamburger) ---------- */
+function initMobileNav(){
+  const toggle = document.getElementById("nav-toggle");
+  const menu = document.getElementById("nav-links");
+  const overlay = document.getElementById("nav-overlay");
+  if(!toggle || !menu) return;
+
+  function closeMenu(){
+    menu.classList.remove("open");
+    if(overlay) overlay.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+  function openMenu(){
+    menu.classList.add("open");
+    if(overlay) overlay.classList.add("open");
+    toggle.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  toggle.addEventListener("click", () => {
+    if(menu.classList.contains("open")) closeMenu(); else openMenu();
+  });
+  if(overlay) overlay.addEventListener("click", closeMenu);
+  menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+  window.addEventListener("resize", () => {
+    if(window.innerWidth > 820) closeMenu();
+  });
+}
+
 /* ---------- Cinematic UX: sticky nav translucency + scroll reveal ---------- */
 function initHeaderScroll(){
   const header = document.querySelector(".site-header");
@@ -295,6 +324,7 @@ async function renderArticlesPage(jsonPath, listId, detailId){
 document.addEventListener("DOMContentLoaded", () => {
   renderChrome();
   initHeaderScroll();
+  initMobileNav();
   const page = document.body.dataset.page;
   if(page === "home") renderHome();
   if(page === "articles") renderArticlesPage("articles-planning.json", "articles-list", "article-detail");
